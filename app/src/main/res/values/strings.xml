@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TechQ</string>
+    <string name="question">Question</string>
+    <string name="play_again">Start Quiz</string>
+    <string name="time">15</string>
+    <string name="correct">Correct</string>
+    <string name="wrongans">Opps the ans was wrong</string>
+    <string name="timeup">Time Up</string>
+    <string name="play_game">Start Quiz</string>
+    <string name="quit">Quit</string>
+    <string name="next">Next</string>
+    <string name="cancel">?</string>
 </resources>
