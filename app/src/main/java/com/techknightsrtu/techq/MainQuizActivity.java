@@ -137,7 +137,7 @@ public class MainQuizActivity extends AppCompatActivity {
     public void setupTimer() {
 
         //countDownTimer
-        countDownTimer = new CountDownTimer(22000, 1000) {
+        countDownTimer = new CountDownTimer(20000, 1000) {
             public void onTick(long millisUntilFinished) {
 
                 //here you can have your logic to set text to timeText
@@ -147,7 +147,7 @@ public class MainQuizActivity extends AppCompatActivity {
                 timeValue -= 1;
 
                 //This means the user is out of time so onFinished will called after this iteration
-                if (timeValue == -1) {
+                if (timeValue == 0) {
 
                     //Since user is out of time setText as time up
                     resultText.setText(getString(R.string.timeup));

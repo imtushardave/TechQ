@@ -25,6 +25,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:textColor="@color/white"
         android:text="Finish"
         fbutton:buttonColor="@color/lightGreen" />
 </LinearLayout>

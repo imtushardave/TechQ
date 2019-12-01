@@ -14,28 +14,15 @@ android:orientation="vertical">
         android:background="@color/white"
         android:padding="0dp">
 
-
-        <TextView
-            android:id="@+id/coinText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="TechQ"
-            android:textColor="@android:color/black"
-            android:fontFamily="@font/capriola"
-            android:textSize="22sp" />
-
         <TextView
             android:id="@+id/timeText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="20dp"
+            android:textStyle="bold"
             android:text="@string/time"
             android:textSize="20sp" />
 
@@ -58,6 +45,7 @@ android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:minHeight="300dp"
                 android:layout_weight=".5"
                 android:background="@color/white"
                 android:orientation="vertical">
@@ -71,7 +59,7 @@ android:orientation="vertical">
                     android:text="@string/question"
                     android:fontFamily="@font/capriola"
                     android:textColor="@color/grey"
-                    android:textSize="24dp" />
+                    android:textSize="22dp" />
 
                 <TextView
                     android:id="@+id/resultText"
@@ -100,7 +88,7 @@ android:orientation="vertical">
                     android:text=""
                     android:textSize="18sp"
                     android:fontFamily="@font/capriola"
-                    android:textColor="@color/white"></info.hoang8f.widget.FButton>
+                    android:textColor="@color/white"/>
 
                 <info.hoang8f.widget.FButton
                     android:id="@+id/buttonB"
@@ -134,38 +122,6 @@ android:orientation="vertical">
                     android:textSize="18sp"
                     android:fontFamily="@font/capriola"
                     android:textColor="@color/white" />
-
-                <LinearLayout
-                    android:weightSum="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <info.hoang8f.widget.FButton
-                        android:layout_weight="1"
-                        android:id="@+id/dialogPrev"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prev"
-                        android:layout_margin="10dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/capriola"/>
-
-                    <info.hoang8f.widget.FButton
-                        android:layout_weight="1"
-                        android:id="@+id/dialogNext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/next"
-                        android:layout_margin="10dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/capriola"/>
-
-
-                </LinearLayout>
-
-
 
             </LinearLayout>
         </LinearLayout>
