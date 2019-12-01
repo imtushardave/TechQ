@@ -10,5 +10,6 @@
     <string name="play_game">Start Quiz</string>
     <string name="quit">Quit</string>
     <string name="next">Next</string>
+    <string name="prev">Prev</string>
     <string name="cancel">?</string>
 </resources>
