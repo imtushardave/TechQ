@@ -3,16 +3,12 @@ package com.techknightsrtu.techq;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,10 +33,10 @@ public class MainQuizActivity extends AppCompatActivity {
     QuizQuestion currentQuestion;
     List<QuizQuestion> list;
     int qid = 0;
-    int timeValue = 20;
-    int coinValue = 0;
+
+    int score = 0;
     CountDownTimer countDownTimer;
-    Typeface tb, sb;
+
 
     //Firebase Variables
     FirebaseAuth mAuth;
@@ -141,29 +137,35 @@ public class MainQuizActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 //here you can have your logic to set text to timeText
-                timeText.setText(String.valueOf(timeValue) + "\"");
+                setTimerFormat(millisUntilFinished/1000);
 
-                //With each iteration decrement the time by 1 sec
-                timeValue -= 1;
-
-                //This means the user is out of time so onFinished will called after this iteration
-                if (timeValue == 0) {
-
-                    //Since user is out of time setText as time up
-                    resultText.setText(getString(R.string.timeup));
-
-                    //Since user is out of time he won't be able to click any buttons
-                    //therefore we will disable all four options buttons using this method
-                    disableButton();
-                }
             }
 
             //Now user is out of time
             public void onFinish() {
                 //We will navigate him to the time up activity using below method
+                disableButton();
                 timeUp();
             }
         }.start();
+
+    }
+
+    /*
+    This function converts seconds into the correct format of the timer
+     */
+    public void setTimerFormat(long sec){
+
+        int p1 = (int) sec % 60;
+        long p2 = sec / 60;
+        int p3 = (int) p2 % 60;
+        p2 = p2 / 60;
+
+        String hrs = String.format("%02d",p2); // Format the number into two digit format
+        String min = String.format("%02d",p3);
+        String seco = String.format("%02d",p1);
+
+        timeText.setText(hrs + ":" + min + ":" + seco);
 
     }
 
@@ -176,13 +178,9 @@ public class MainQuizActivity extends AppCompatActivity {
         buttonC.setText(currentQuestion.getOptC());
         buttonD.setText(currentQuestion.getOptD());
 
-        timeValue = 20;
-
         //Now since the user has ans correct just reset timer back for another que- by cancel and start
         countDownTimer.cancel();
         countDownTimer.start();
-
-
 
     }
 
@@ -191,7 +189,7 @@ public class MainQuizActivity extends AppCompatActivity {
         //compare the option with the ans if yes then make button color green
         if (currentQuestion.getOptA().equals(currentQuestion.getAnswer())) {
             //Now since user has ans correct increment the coinvalue
-            coinValue++;
+            score++;
 
         }
 
@@ -230,7 +228,7 @@ public class MainQuizActivity extends AppCompatActivity {
     public void buttonB(View view) {
         if (currentQuestion.getOptB().equals(currentQuestion.getAnswer())) {
             //Now since user has ans correct increment the coinvalue
-            coinValue++;
+            score++;
         }
         if (qid < list.size()-1) {
             disableButton();
@@ -249,7 +247,7 @@ public class MainQuizActivity extends AppCompatActivity {
     public void buttonC(View view) {
         if (currentQuestion.getOptC().equals(currentQuestion.getAnswer())) {
             //Now since user has ans correct increment the coinvalue
-            coinValue++;
+            score++;
 
         }
         if (qid < list.size()-1) {
@@ -269,7 +267,7 @@ public class MainQuizActivity extends AppCompatActivity {
     public void buttonD(View view) {
         if (currentQuestion.getOptD().equals(currentQuestion.getAnswer())) {
             //Now since user has ans correct increment the coinvalue
-            coinValue++;
+            score++;
         }
         if (qid < list.size()-1) {
             disableButton();
