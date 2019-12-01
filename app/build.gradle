@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.techknightsrtu.techq"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.jgb.lordsaac.igb.progresslitieigb:progresslottieigb:0.0.3'
+    implementation "com.airbnb.android:lottie:3.2.2"
     implementation 'info.hoang8f:fbutton:1.0.5'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

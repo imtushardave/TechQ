@@ -13,12 +13,21 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Thank you for participating"
-        android:textColor="#000"
+        android:textColor="@color/red"
+        android:fontFamily="@font/capriola"
         android:textSize="30sp" />
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/wrongans" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        fbutton:lottie_rawRes="@raw/quiz_complete"
+        fbutton:lottie_loop="true"
+        fbutton:lottie_autoPlay="true"
+        />
+<!--    <ImageView-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:src="@drawable/wrongans" />-->
 
     <info.hoang8f.widget.FButton
         android:id="@+id/FinishButton"

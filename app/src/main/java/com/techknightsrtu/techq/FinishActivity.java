@@ -1,6 +1,7 @@
 package com.techknightsrtu.techq;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,16 +10,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import info.hoang8f.widget.FButton;
+
 public class FinishActivity extends AppCompatActivity {
 
-    Button finishButton;
+    FButton finishButton;
     TextView wrongAnsText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
         //Initialize
-        finishButton = (Button) findViewById(R.id.FinishButton);
+        finishButton = (FButton) findViewById(R.id.FinishButton);
+        finishButton.setButtonColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
         wrongAnsText = (TextView)findViewById(R.id.wrongAns);
 
         //play again button onclick listener

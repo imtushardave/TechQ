@@ -7,6 +7,43 @@ android:layout_height="match_parent"
 android:background="@color/white"
 android:orientation="vertical">
 
+
+    <RelativeLayout
+        android:id="@+id/quizLoading"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/capriola"
+            android:gravity="center"
+            android:text="Please Wait\nWe are preparing quiz for you!"
+            android:textColor="@color/red"
+            android:textSize="30sp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_below="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content"
+            fbutton:lottie_rawRes="@raw/quiz_loading"
+            fbutton:lottie_loop="true"
+            fbutton:lottie_autoPlay="true"
+            />
+
+    </RelativeLayout>
+
     <RelativeLayout
         android:elevation="8dp"
         android:layout_width="match_parent"
@@ -33,7 +70,6 @@ android:orientation="vertical">
         android:layout_height="10dp"></View>
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -58,17 +94,9 @@ android:orientation="vertical">
                     android:gravity="center"
                     android:text="@string/question"
                     android:fontFamily="@font/capriola"
-                    android:textColor="@color/grey"
+                    android:textColor="@color/red"
                     android:textSize="22dp" />
 
-                <TextView
-                    android:id="@+id/resultText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@color/green"
-                    android:textSize="30sp" />
             </LinearLayout>
 
             <LinearLayout

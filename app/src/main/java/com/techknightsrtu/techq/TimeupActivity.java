@@ -1,6 +1,7 @@
 package com.techknightsrtu.techq;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -21,6 +22,8 @@ public class TimeupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeup);
         //Initialize
         playAgainButton = (FButton)findViewById(R.id.quitButton);
+        playAgainButton.setButtonColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+
         timeUpText = (TextView)findViewById(R.id.timeUpText);
 
         //play again button onclick listener

@@ -7,10 +7,15 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.forms.sti.progresslitieigb.Inteface.IProgressLoadingIGB;
+import com.forms.sti.progresslitieigb.Model.JSetting;
+import com.forms.sti.progresslitieigb.ProgressLoadingJIGB;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +34,7 @@ public class MainQuizActivity extends AppCompatActivity {
     private static final String TAG = "MainQuizActivity";
 
     FButton buttonA, buttonB, buttonC, buttonD;
+    RelativeLayout quizLoading;
     TextView questionText, timeText, resultText;
     QuizQuestion currentQuestion;
     List<QuizQuestion> list;
@@ -48,6 +54,23 @@ public class MainQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_quiz);
 
+        quizLoading = (RelativeLayout)findViewById(R.id.quizLoading);
+        quizLoading.setVisibility(View.VISIBLE);
+
+
+
+//        ProgressLoadingJIGB.setupLoading = new IProgressLoadingIGB() {
+//            @Override
+//            public void body(JSetting setup) {
+//                setup.srcLottieJson = R.raw.quiz_loading; // Tour Source JSON Lottie
+//                setup.message = "Loading Quiz!";//  Center Message
+//                setup.timer = 0;   // Time of live for progress.
+//
+//            }
+//        };
+//
+//        ProgressLoadingJIGB.startLoading(MainQuizActivity.this);
+
         //Initializing variables
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
@@ -55,6 +78,7 @@ public class MainQuizActivity extends AppCompatActivity {
 
         currentQuestion = new QuizQuestion();
         list = new ArrayList<>();
+
 
         questionText = (TextView) findViewById(R.id.triviaQuestion);
         buttonA = (FButton) findViewById(R.id.buttonA);
@@ -74,8 +98,6 @@ public class MainQuizActivity extends AppCompatActivity {
 
         //Setup Countdown Timer for the question
         setupTimer();
-
-
 
     }
 
@@ -110,6 +132,7 @@ public class MainQuizActivity extends AppCompatActivity {
                 }
 
                 Log.d(TAG, "onDataChange: " + list);
+
                 //Now we gonna shuffle the elements of the list so that we will get questions randomly
                 Collections.shuffle(list);
 
@@ -118,6 +141,12 @@ public class MainQuizActivity extends AppCompatActivity {
 
                 //This method will set the que and four options
                 updateQueAndOptions();
+
+                //loading screen visibility gone
+                quizLoading.setVisibility(View.GONE);
+
+                //Quiz loaded and Now timer will start
+                countDownTimer.start();
 
             }
 
@@ -147,7 +176,7 @@ public class MainQuizActivity extends AppCompatActivity {
                 disableButton();
                 timeUp();
             }
-        }.start();
+        };
 
     }
 
@@ -179,8 +208,8 @@ public class MainQuizActivity extends AppCompatActivity {
         buttonD.setText(currentQuestion.getOptD());
 
         //Now since the user has ans correct just reset timer back for another que- by cancel and start
-        countDownTimer.cancel();
-        countDownTimer.start();
+
+
 
     }
 
@@ -285,6 +314,7 @@ public class MainQuizActivity extends AppCompatActivity {
 
     //This method will navigate from current activity to GameWon
     public void gameWon() {
+        countDownTimer.cancel();
         Intent intent = new Intent(this, FinishActivity.class);
         startActivity(intent);
         finish();
@@ -293,6 +323,7 @@ public class MainQuizActivity extends AppCompatActivity {
     //This method is called when time is up
     //this method will navigate user to the activity Time_Up
     public void timeUp() {
+        countDownTimer.cancel();
         Intent intent = new Intent(this, TimeupActivity.class);
         startActivity(intent);
         finish();
